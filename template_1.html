@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ name }} — Graphic Designer</title>
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===========================
+     Variables & Base
+     =========================== */
+        :root {
+            --bg: #fcfbf9;
+            --panel: #ffffff;
+            --muted: #6b7280;
+            --text: #0b1320;
+            --accent1: #ff5a7c;
+            /* coral */
+            --accent2: #7c5cff;
+            /* violet */
+            --accent3: #ffd56b;
+            /* gold */
+            --glass: rgba(255, 255, 255, 0.6);
+            --card-shadow: 0 12px 30px rgba(12, 18, 30, 0.08);
+            --maxw: 1200px;
+        }
+
+        .dark {
+            --bg: #08090b;
+            --panel: rgba(10, 12, 15, 0.6);
+            --muted: #9aa3ad;
+            --text: #e8eef2;
+            --glass: rgba(255, 255, 255, 0.02);
+            --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, var(--bg), #f4f3f2);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: inherit
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        .container {
+            width: min(var(--maxw), 95%);
+            margin: 0 auto
+        }
+
+        /* ===========================
+     Top nav (centered, elegant)
+     =========================== */
+        header.topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1200;
+            backdrop-filter: blur(8px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35));
+            border-bottom: 1px solid rgba(12, 18, 30, 0.04);
+        }
+
+        .topbar .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            padding: 14px 8px;
+            position: relative;
+        }
+
+        .brand {
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            color: var(--accent2);
+            font-size: 1.15rem
+        }
+
+        .nav a {
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 8px;
+            transition: all .18s
+        }
+
+        .nav a:hover {
+            color: var(--text);
+            background: var(--glass)
+        }
+
+        .nav .controls {
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .small-btn {
+            background: transparent;
+            border: 1px solid rgba(11, 19, 32, 0.06);
+            padding: 7px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--muted)
+        }
+
+        .small-btn:hover {
+            transform: translateY(-2px)
+        }
+
+        /* ===========================
+     HERO (showcase carousel + tagline)
+     =========================== */
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 56px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 28px;
+            align-items: center;
+            width: min(var(--maxw), 95%)
+        }
+
+        .hero .left {
+            padding: 28px 20px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.45));
+            box-shadow: var(--card-shadow);
+        }
+
+        .eyebrow {
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 10px
+        }
+
+        h1.hero-title {
+            font-family: "Playfair Display", serif;
+            font-size: 2.6rem;
+            margin: 0 0 12px
+        }
+
+        p.lead {
+            color: var(--muted);
+            max-width: 58ch;
+            margin-bottom: 18px
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            padding: 12px 18px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            border: none;
+            cursor: pointer
+        }
+
+        .btn-secondary {
+            background: transparent;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(11, 19, 32, 0.06);
+            color: var(--muted);
+            cursor: pointer
+        }
+
+        /* hero right: slideshow preview / polaroid stack */
+        .slideshow {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .card-stack {
+            width: 380px;
+            height: 380px;
+            position: relative
+        }
+
+        .stack-item {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(12, 18, 30, 0.12);
+            transform-origin: center;
+            transition: transform .45s, opacity .4s
+        }
+
+        .stack-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .stack-item.out {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(.96) translateY(18px)
+        }
+
+        .stack-item.center {
+            transform: translateY(-8px) scale(1.02)
+        }
+
+        /* subtle decorative shapes */
+        .shape {
+            position: absolute;
+            filter: blur(40px);
+            opacity: .12;
+            mix-blend-mode: lighten
+        }
+
+        .shape.s1 {
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, var(--accent2), transparent);
+            left: -60px;
+            top: 30px
+        }
+
+        .shape.s2 {
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, var(--accent1), transparent);
+            right: -40px;
+            bottom: 40px
+        }
+
+        /* ===========================
+     Sections layout
+     =========================== */
+        section {
+            padding: 72px 0
+        }
+
+        section .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 28px
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 1.9rem;
+            margin-bottom: 6px
+        }
+
+        .section-sub {
+            color: var(--muted);
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 820px
+        }
+
+        /* ====== SERVICES / WHAT I DO ====== */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 22px
+        }
+
+        .service {
+            background: var(--panel);
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
+            transition: transform .18s
+        }
+
+        .service:hover {
+            transform: translateY(-6px)
+        }
+
+        .service i {
+            font-size: 22px;
+            color: var(--accent2);
+            display: inline-block;
+            margin-bottom: 8px
+        }
+
+        /* ====== PORTFOLIO MASONRY ====== */
+        .filters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 18px
+        }
+
+        .filter-btn {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(11, 19, 32, 0.06);
+            background: var(--panel);
+            cursor: pointer
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: white;
+            border: none
+        }
+
+        .masonry {
+            column-count: 3;
+            column-gap: 18px
+        }
+
+        @media (max-width:980px) {
+            .hero .hero-inner {
+                grid-template-columns: 1fr
+            }
+
+            .masonry {
+                column-count: 2
+            }
+        }
+
+        @media (max-width:640px) {
+            .masonry {
+                column-count: 1
+            }
+        }
+
+        .proj {
+            break-inside: avoid;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            background: var(--panel);
+            transition: transform .22s
+        }
+
+        .proj:hover {
+            transform: translateY(-8px)
+        }
+
+        .proj .meta {
+            padding: 12px
+        }
+
+        .proj .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px
+        }
+
+        .tag {
+            background: rgba(11, 19, 32, 0.06);
+            padding: 6px 8px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--muted)
+        }
+
+        /* before/after slider inside modal */
+        .ba-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .ba-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px
+        }
+
+        .ba-slider img {
+            display: block;
+            width: 100%
+        }
+
+        .ba-resize {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            overflow: hidden
+        }
+
+        .ba-handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, transparent, #fff, transparent);
+            transform: translateX(-50%);
+            cursor: ew-resize
+        }
+
+        /* ========== CASE STUDY MODAL ========== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.6);
+            z-index: 1400;
+            padding: 26px
+        }
+
+        .modal.show {
+            display: flex
+        }
+
+        .modal-card {
+            width: min(1000px, 96%);
+            background: var(--panel);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            max-height: 86vh;
+            overflow: auto
+        }
+
+        /* ========== Testimonials carousel ========== */
+        .testi-wrap {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .testi {
+            max-width: 760px;
+            background: linear-gradient(90deg, #fff, #fff);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow)
+        }
+
+        .client {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 12px
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0
+        }
+
+        /* ========== Awards & Timeline ========= */
+        .awards {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .award {
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #fff, #fff);
+            box-shadow: var(--card-shadow)
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 18px auto
+        }
+
+        .timeline .item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px
+        }
+
+        .timeline .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent2);
+            border-radius: 50%;
+            margin-top: 6px
+        }
+
+        /* ========== Counters & Footer ========== */
+        .counters {
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .counter {
+            background: var(--panel);
+            padding: 16px;
+            border-radius: 12px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: var(--card-shadow)
+        }
+
+        footer.sitefoot {
+            padding: 26px 0;
+            text-align: center;
+            color: var(--muted);
+            margin-top: 36px
+        }
+
+        /* small mobile tweaks */
+        @media (max-width:720px) {
+            .topbar .nav {
+                padding: 10px
+            }
+
+            .nav .controls {
+                position: static
+            }
+
+            .hero .left {
+                padding: 18px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top nav -->
+    <header class="topbar" role="banner">
+        <div class="container nav" role="navigation" aria-label="Main navigation">
+            <div class="brand">{{ name }}</div>
+
+            <nav aria-label="Primary">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Work</a>
+                <a href="#awards">Awards</a>
+                <a href="#testimonials">Clients</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="controls" aria-hidden="false">
+                <button class="small-btn" id="downloadCvBtn" aria-label="Download CV">Download CV</button>
+                <button class="small-btn" id="themeToggle" aria-label="Toggle theme"><i
+                        class="fa-solid fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero" class="hero" aria-label="Introduction">
+        <div class="shape s1" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div class="left" role="region" aria-labelledby="hero-title">
+                <div class="eyebrow">Graphic Designer & Visual Storyteller</div>
+                <h1 id="hero-title" class="hero-title">{{ tagline | default('Designing brand stories, packaging &
+                    delightful visuals') }}</h1>
+                <p class="lead">{{ hero_blurb | default('I craft meaningful visuals that help brands connect with
+                    people. I blend colour, typography and careful composition to tell memorable stories.') }}</p>
+
+                <div class="cta-row">
+                    <button class="btn-primary"
+                        onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View
+                        Work</button>
+                    <button class="btn-secondary" id="openContact">Hire Me</button>
+                </div>
+            </div>
+
+            <div class="slideshow" aria-hidden="false">
+                <div class="card-stack" id="stack">
+                    {% for p in portfolio[:4] %}
+                    <figure class="stack-item {% if loop.index0 != 0 %}out{% else %}center{% endif %}"
+                        data-index="{{ loop.index0 }}">
+                        <img src="{{ p.image }}" alt="{{ p.title }}">
+                    </figure>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="shape s2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-label="About me">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About</h2>
+                <div class="section-sub">{{ about_sub | default('A little about my approach, background and what I love
+                    to create.') }}</div>
+            </div>
+
+            <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+                <div style="flex:0 0 220px;">
+                    <img src="{{ profile_image }}" alt="{{ name }}"
+                        style="border-radius:16px;box-shadow:var(--card-shadow);width:220px;height:220px;object-fit:cover">
+                </div>
+                <div style="flex:1">
+                    <div class="card" style="padding:18px 20px">
+                        <p style="margin-bottom:10px">{{ about_text }}</p>
+                        <p class="muted small">{{ about_mini }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:18px" class="services">
+                {% for s in services %}
+                <div class="service" role="article">
+                    <i class="{{ s.icon }}"></i>
+                    <h4 style="margin:10px 0 6px">{{ s.title }}</h4>
+                    <p class="muted small">{{ s.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" aria-label="Portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Selected Work</h2>
+                <div class="section-sub">{{ portfolio_sub | default('Case studies & highlights — click any item to view
+                    the full case study.') }}</div>
+            </div>
+
+            <div class="filters" role="tablist" aria-label="Project filters">
+                <button class="filter-btn active" data-filter="*">All</button>
+                {% for tag in project_tags %}
+                <button class="filter-btn" data-filter="{{ tag }}">{{ tag }}</button>
+                {% endfor %}
+            </div>
+
+            <div class="masonry" id="masonry">
+                {% for project in portfolio %}
+                <article class="proj" data-tags="{{ project.tags | join(',') }}" tabindex="0" role="article"
+                    aria-label="{{ project.title }}">
+                    <div style="position:relative">
+                        <img src="{{ project.image }}" alt="{{ project.title }}" loading="lazy"
+                            style="width:100%;height:auto">
+                        <div
+                            style="position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg, rgba(0,0,0,0.35),rgba(0,0,0,0.05));padding:8px 10px;border-radius:8px;color:white;">
+                            <strong>{{ project.title }}</strong>
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <p class="muted small">{{ project.short }}</p>
+                        <div class="tags">
+                            {% for t in project.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+                        </div>
+                        <div style="margin-top:10px;display:flex;gap:10px">
+                            <button class="small-btn" onclick="openCaseStudy({ loopindex0 })">Case Study</button>
+                            {% if project.live %}<a class="small-btn" href="{{ project.live }}"
+                                target="_blank">Live</a>{% endif %}
+                            {% if project.repo %}<a class="small-btn" href="{{ project.repo }}"
+                                target="_blank">Code</a>{% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards" aria-label="Awards">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <div class="section-sub">{{ awards_sub | default('Selected awards, exhibitions and press mentions.') }}
+                </div>
+            </div>
+
+            <div class="awards">
+                {% for a in awards %}
+                <div class="award">
+                    <div style="font-size:22px">🏆</div>
+                    <div style="font-weight:700;margin-top:8px">{{ a.title }}</div>
+                    <div class="muted small">{{ a.year }} · {{ a.issuer }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" aria-label="Testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Clients & Testimonials</h2>
+                <div class="section-sub">What people say about working together.</div>
+            </div>
+
+            <div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap" id="testiWrap">
+                {% for t in testimonials %}
+                <div class="testi" data-index="{{ loop.index0 }}">
+                    <blockquote style="margin:0 0 8px;font-style:italic">“{{ t.text }}”</blockquote>
+                    <div class="client">
+                        <div class="avatar"><img src="{{ t.avatar }}" alt="{{ t.name }}"
+                                style="width:48px;height:48px;object-fit:cover"></div>
+                        <div>
+                            <div style="font-weight:700">{{ t.name }}</div>
+                            <div class="muted small">{{ t.role }} · {{ t.company }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div style="margin-top:12px;text-align:center">
+                <button class="small-btn" id="prevTesti">Prev</button>
+                <button class="small-btn" id="nextTesti">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section aria-label="Timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Timeline</h2>
+                <div class="section-sub">Milestones across my creative journey.</div>
+            </div>
+
+            <div class="timeline">
+                {% for e in timeline %}
+                <div class="item">
+                    <div style="display:flex;gap:12px;align-items:flex-start">
+                        <div class="dot" aria-hidden="true"></div>
+                        <div>
+                            <div style="font-weight:700">{{ e.year }} · {{ e.title }}</div>
+                            <div class="muted small">{{ e.desc }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS / COUNTERS -->
+    <section aria-label="Stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Numbers & Fun Facts</h2>
+                <div class="section-sub">Small metrics that tell a bigger story.</div>
+            </div>
+
+            <div class="counters">
+                <div class="counter">
+                    <div style="font-size:1.6rem;font-weight:700" id="cProjects">0</div>
+                    <div class="muted small">Projects</div>
+                </div>
+                <div class="counter">
+                    <div style="font-size:1.6rem;font-weight:700" id="cClients">0</div>
+                    <div class="muted small">Clients</div>
+                </div>
+                <div class="counter">
+                    <div style="font-size:1.6rem;font-weight:700" id="cYears">0</div>
+                    <div class="muted small">Years</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG PREVIEWS -->
+    <section id="blog" aria-label="Writing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notes & Writings</h2>
+                <div class="section-sub">Reflections on design and process.</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+                {% for post in blog %}
+                <article class="card post">
+                    <h4 style="margin-bottom:8px">{{ post.title }}</h4>
+                    <p class="muted small">{{ post.excerpt }}</p>
+                    <div style="margin-top:12px"><a href="{{ post.link }}" class="small-btn">Read</a></div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <div class="section-sub">Let's create something beautiful together.</div>
+            </div>
+
+            <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start">
+                <div style="flex:1;min-width:280px" class="card">
+                    <h4>Get in touch</h4>
+                    <p class="muted small">Email me at <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> or
+                        reach out on social.</p>
+                    <div style="margin-top:12px;display:flex;gap:10px">
+                        {% if social.instagram %}<a href="{{ social.instagram }}" class="small-btn">Instagram</a>{%
+                        endif %}
+                        {% if social.behance %}<a href="{{ social.behance }}" class="small-btn">Behance</a>{% endif %}
+                        {% if social.dribbble %}<a href="{{ social.dribbble }}" class="small-btn">Dribbble</a>{% endif
+                        %}
+                    </div>
+                </div>
+
+                <form action="{{ contact.action | default('/contact') }}" method="POST" style="flex:1;min-width:280px">
+                    <div style="display:grid;gap:12px">
+                        <input name="name" type="text" placeholder="Your name" required
+                            style="padding:12px;border-radius:10px;border:1px solid rgba(12,18,30,0.06)">
+                        <input name="email" type="email" placeholder="Email" required
+                            style="padding:12px;border-radius:10px;border:1px solid rgba(12,18,30,0.06)">
+                        <textarea name="message" rows="6" placeholder="Tell me about your project"
+                            style="padding:12px;border-radius:10px;border:1px solid rgba(12,18,30,0.06)"></textarea>
+                        <button class="btn-primary" type="submit">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="sitefoot">
+        <div class="container">
+            <div style="display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap">
+                <div class="muted small">© {{ current_year }} {{ name }}</div>
+                <div class="muted small">·</div>
+                <div class="muted small">Designed & Built by {{ name }}</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CASE STUDY MODAL (populated by JS using Jinja array) -->
+    <div id="caseModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-card" role="document">
+            <button id="closeModal" class="small-btn" style="float:right">Close</button>
+            <div id="caseContent"></div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================
+           Lightweight interactions: theme toggle, slideshow, filters,
+           case study modal, testimonials carousel, counters, a11y bits
+           ============================================================ */
+
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        const downloadCvBtn = document.getElementById('downloadCvBtn');
+
+        if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark') }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+            themeToggle.innerHTML = body.classList.contains('dark') ? '<i class=\"fa-solid fa-sun\"></i>' : '<i class=\"fa-solid fa-moon\"></i>';
+        });
+
+        // CV btn (demo hook)
+        downloadCvBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // If you have a URL: window.location.href = "{{ cv_url }}";
+            alert('CV download demo — replace with your CV URL or Flask route.');
+        });
+
+        /* Hero slideshow stack: cycle top 4 images gracefully */
+        (function heroStack() {
+            const items = document.querySelectorAll('.stack-item');
+            if (!items.length) return;
+            let idx = 0;
+            setInterval(() => {
+                items.forEach((it, i) => it.classList.add('out'));
+                idx = (idx + 1) % items.length;
+                const current = items[idx];
+                current.classList.remove('out');
+                current.classList.add('center');
+                // remove center from others
+                items.forEach((it, i) => { if (i !== idx) it.classList.remove('center'); });
+            }, 3800);
+        })();
+
+        /* Project filters */
+        (function filters() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.proj');
+            buttons.forEach(btn => btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const f = btn.dataset.filter;
+                projects.forEach(p => {
+                    if (f === '*') { p.style.display = 'block'; return; }
+                    const tags = p.dataset.tags.toLowerCase().split(',');
+                    p.style.display = tags.includes(f.toLowerCase()) ? 'block' : 'none';
+                });
+            }));
+        })();
+
+
+
+        function openCaseStudy(i) {
+            const modal = document.getElementById('caseModal');
+            const content = document.getElementById('caseContent');
+            const data = portfolioData[i];
+            if (!data) return;
+            modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false');
+            let html = `<h2 style="font-family:Playfair Display,serif">${data.title}</h2>`;
+            html += `<div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">`;
+            html += `<div style="flex:1;min-width:320px"><img src="${data.image}" alt="${data.title}" style="border-radius:10px;max-width:100%"></div>`;
+            html += `<div style="flex:1;min-width:260px"><p><strong>Role:</strong> ${data.role} · <strong>Year:</strong> ${data.year}</p>`;
+            html += `<p style="margin-top:10px">${data.long}</p>`;
+            if (data.tags && data.tags.length) {
+                html += '<p style="margin-top:10px"><strong>Tags:</strong> ' + data.tags.join(', ') + '</p>';
+            }
+            html += `</div></div>`;
+
+            if (data.before && data.after) {
+                html += `<hr style="margin:18px 0"><h4>Before / After</h4>
+      <div class="ba-wrap">
+        <div class="ba-slider" style="flex:1;min-width:300px">
+          <img src="${data.before}" alt="before" style="width:100%;display:block">
+          <div class="ba-resize"><img src="${data.after}" alt="after" style="width:100%;display:block"></div>
+          <div class="ba-handle"></div>
+        </div>
+      </div>`;
+            }
+
+            content.innerHTML = html;
+            setupBeforeAfter();
+        }
+
+        /* Modal close */
+        document.getElementById('closeModal').addEventListener('click', () => {
+            const modal = document.getElementById('caseModal');
+            modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true');
+            document.getElementById('caseContent').innerHTML = '';
+        });
+
+        /* Before-After slider draggable handler */
+        function setupBeforeAfter() {
+            const slider = document.querySelector('.ba-slider');
+            if (!slider) return;
+            const resize = slider.querySelector('.ba-resize');
+            const handle = slider.querySelector('.ba-handle');
+            const rect = slider.getBoundingClientRect();
+            function pos(e) {
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const x = Math.max(rect.left, Math.min(rect.right, clientX));
+                const pct = ((x - rect.left) / rect.width) * 100;
+                resize.style.width = pct + '%';
+                handle.style.left = pct + '%';
+            }
+            handle.onpointerdown = (ev) => {
+                ev.preventDefault();
+                document.onpointermove = pos;
+                document.onpointerup = () => { document.onpointermove = null; };
+            };
+            /* also allow click to move */
+            slider.addEventListener('click', (e) => { pos(e); });
+        }
+
+        /* Testimonials carousel (simple) */
+        (function testi() {
+            const items = document.querySelectorAll('#testiWrap .testi');
+            if (!items.length) return;
+            let cur = 0;
+            function show(i) {
+                items.forEach((it, idx) => { it.style.display = idx === i ? 'block' : 'none'; });
+            }
+            show(cur);
+            document.getElementById('prevTesti').addEventListener('click', () => { cur = (cur - 1 + items.length) % items.length; show(cur); });
+            document.getElementById('nextTesti').addEventListener('click', () => { cur = (cur + 1) % items.length; show(cur); });
+            setInterval(() => { cur = (cur + 1) % items.length; show(cur); }, 7000);
+        })();
+
+        /* Animated counters when visible */
+        (function counters() {
+            const c1 = document.getElementById('cProjects');
+            const c2 = document.getElementById('cClients');
+            const c3 = document.getElementById('cYears');
+            const target1 = {{ stats.projects | default (42)
+        }};
+        const target2 = {{ stats.clients | default (28) }};
+        const target3 = {{ stats.years | default (8) }};
+        let started = false;
+        const obs = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !started) {
+                started = true;
+                animate(c1, target1, 1400); animate(c2, target2, 1400); animate(c3, target3, 1400);
+                obs.disconnect();
+            }
+        }, { threshold: 0.6 });
+        obs.observe(document.querySelector('#cProjects').parentElement.parentElement);
+
+        function animate(el, to, duration) {
+            const start = performance.now();
+            const from = 0;
+            function step(ts) {
+                const p = Math.min(1, (ts - start) / duration);
+                el.textContent = Math.floor(from + (to - from) * easeOutCubic(p));
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        function easeOutCubic(t) { return (--t) * t * t + 1; }
+}) ();
+
+        /* Accessibility: keyboard close modal */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('caseModal');
+                if (modal.classList.contains('show')) { document.getElementById('closeModal').click(); }
+            }
+        });
+
+        /* Open contact under hero CTA */
+        document.getElementById('openContact').addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        /* Keyboard focus outlines for accessibility */
+        document.body.addEventListener('keydown', (e) => { if (e.key === 'Tab') { document.body.classList.add('show-focus'); } });
+    </script>
+
+</body>
+
+</html>

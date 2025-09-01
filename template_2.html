@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aarav Sharma | Personal Portfolio</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --bg: #fbf7f3;
+            /* soft pastel */
+            --muted: #7b7b7b;
+            --text: #222;
+            --accent: #b89f7f;
+            /* warm beige accent */
+            --card: #ffffff;
+            --glass: rgba(255, 255, 255, 0.6);
+            --shadow: 0 6px 22px rgba(34, 34, 34, 0.06);
+            --maxw: 1100px;
+        }
+
+        .dark {
+            --bg: #0b0f11;
+            --muted: #9aa1a6;
+            --text: #e9eef0;
+            --accent: #8ab0a8;
+            --card: rgba(10, 12, 14, 0.65);
+            --glass: rgba(255, 255, 255, 0.03);
+            --shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", system-ui, Segoe UI, Roboto, Arial;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Centered minimal navbar (sticky) */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(6px);
+            background: linear-gradient(180deg, var(--glass), transparent);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            padding: 14px 18px;
+        }
+
+        .nav-wrap a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-wrap a:hover {
+            color: var(--text);
+        }
+
+        /* utility row for controls (right) */
+        .controls {
+            position: absolute;
+            right: 18px;
+            top: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-small {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-small:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: var(--maxw);
+            margin: 36px auto 24px;
+            padding: 56px 18px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 14px;
+            pointer-events: none;
+            opacity: 0.08;
+            background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b7d6a3c3b1b4b9b9c7a7ef6f2c1d76a');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) saturate(90%);
+        }
+
+        .polaroid {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 18px;
+            border-radius: 18px;
+            padding: 8px;
+            background: var(--card);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+            transform: rotate(-4deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        h1.hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            margin: 12px 0 6px;
+            letter-spacing: 0.6px;
+        }
+
+        p.tagline {
+            color: var(--muted);
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: 1.05rem
+        }
+
+        .hero-quote {
+            margin-top: 12px;
+            color: var(--muted);
+            font-style: italic;
+            font-size: 0.95rem
+        }
+
+        .hero-actions {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .cta {
+            background: var(--accent);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none
+        }
+
+        .ghost {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 8px 12px;
+            border-radius: 10px;
+            color: var(--muted)
+        }
+
+        /* Sections spacing & divider */
+        main {
+            padding-bottom: 80px
+        }
+
+        section {
+            max-width: var(--maxw);
+            margin: 48px auto;
+            padding: 0 18px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+            margin: 28px 0;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        /* What I Do (icons) */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px
+        }
+
+        .who {
+            text-align: center;
+            padding: 18px
+        }
+
+        .who i {
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 10px
+        }
+
+        /* Portfolio bigger images */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px
+        }
+
+        .portfolio .item img {
+            border-radius: 10px;
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover
+        }
+
+        .portfolio .caption {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.95rem
+        }
+
+        /* Favorites simple list */
+        .favorites p {
+            margin: 6px 0;
+        }
+
+        /* Messages from friends (casual) */
+        .messages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px
+        }
+
+        .messages .msg {
+            padding: 12px;
+            border-radius: 10px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+
+        /* Timeline */
+        .timeline {
+            padding-left: 16px;
+            border-left: 2px solid rgba(0, 0, 0, 0.06)
+        }
+
+        .timeline .event {
+            position: relative;
+            margin: 18px 0;
+            padding-left: 18px
+        }
+
+        .timeline .event::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            left: -20px;
+            top: 6px
+        }
+
+        /* Skills as stars */
+        .stars {
+            color: var(--accent);
+            font-size: 1.05rem
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px
+        }
+
+        /* Blog previews */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px
+        }
+
+        .post {
+            padding: 12px;
+            border-radius: 10px;
+            background: var(--card);
+            box-shadow: var(--shadow)
+        }
+
+        /* Day-in-life */
+        .routine {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .routine .item {
+            background: var(--card);
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px
+        }
+
+        /* FAQ */
+        .faq .q {
+            cursor: pointer;
+            padding: 12px;
+            background: var(--card);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            box-shadow: var(--shadow)
+        }
+
+        .faq .a {
+            padding: 12px;
+            margin-bottom: 8px;
+            color: var(--muted)
+        }
+
+        /* counters */
+        .counters {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .counter {
+            text-align: center;
+            padding: 12px;
+            min-width: 120px
+        }
+
+        /* newsletter */
+        .newsletter {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap
+        }
+
+        .newsletter input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            min-width: 220px
+        }
+
+        /* footer sticky minimal */
+        footer.site-footer {
+            position: sticky;
+            bottom: 0;
+            margin-top: 36px;
+            background: transparent;
+            text-align: center;
+            padding: 16px 8px;
+            color: var(--muted);
+        }
+
+        /* small helpers */
+        .muted {
+            color: var(--muted)
+        }
+
+        .center {
+            text-align: center
+        }
+
+        .small {
+            font-size: 0.9rem
+        }
+
+        .flex {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        /* responsive tweaks */
+        @media (max-width:720px) {
+            .nav-wrap {
+                gap: 12px;
+                padding: 10px
+            }
+
+            .polaroid {
+                width: 140px;
+                height: 140px
+            }
+
+            h1.hero-name {
+                font-size: 1.9rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / centered nav -->
+    <header class="site-header">
+        <div class="nav-wrap" style="position:relative">
+            <a href="#about">About</a>
+            <a href="#philosophy">Philosophy</a>
+            <a href="#whatido">What I Do</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#favorites">Favorites</a>
+            <a href="#messages">Messages</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#contact">Contact</a>
+
+            <!-- controls: language + dark toggle + CV -->
+            <div class="controls" aria-hidden="false">
+                <select id="lang" class="btn-small" title="Language selector" aria-label="Language">
+                    <option value="en">EN</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+                <button id="themeToggle" class="btn-small" title="Toggle dark/light" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a class="btn-small" href="#" id="downloadCv" download>Download CV</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+        <section class="hero" id="hero" aria-labelledby="hero-heading">
+            <div class="hero-bg" aria-hidden="true"></div>
+
+            <div class="polaroid" aria-hidden="false">
+                <img src="https://via.placeholder.com/300x300.png?text=Profile" alt="Profile picture">
+            </div>
+
+            <h1 class="hero-name" id="hero-heading">Aarav Sharma</h1>
+            <p class="tagline">A warm-hearted person who loves photography, cooking, and long walks in the park.</p>
+
+            <!-- quote rotator -->
+            <div class="hero-quote small muted" id="heroQuote">"Life is a story — make yours worth reading."</div>
+
+            <div class="hero-actions">
+                <a class="cta" href="#contact">Say Hello</a>
+                <a class="ghost" href="#portfolio">View My Moments</a>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- About (short story) -->
+        <section id="about" aria-labelledby="about-h">
+            <h2 id="about-h">About Me</h2>
+            <div class="card">
+                <p><strong>Once upon a time</strong>, I moved to a small city with a suitcase and a camera. I learned
+                    that the best
+                    parts of life are the little routines — morning tea on the balcony, the corner bookstore, and
+                    conversations that last
+                    too long. I bake on Sundays, photograph sunsets in the evenings, and write letters sometimes.</p>
+                <p class="muted small">This is a short snapshot — I prefer experiences over lists of achievements.</p>
+            </div>
+        </section>
+
+        <!-- Philosophy -->
+        <section id="philosophy" aria-labelledby="philosophy-h">
+            <h2 id="philosophy-h">My Philosophy</h2>
+            <div class="card">
+                <p>I believe in curiosity, kindness, and slow living. I try to learn something small every day and use
+                    what I learn
+                    to help people around me. Quality of life matters more than quantity of tasks.</p>
+            </div>
+        </section>
+
+        <!-- What I Do -->
+        <section id="whatido" aria-labelledby="whatido-h">
+            <h2 id="whatido-h">What I Do</h2>
+            <div class="grid-3">
+                <div class="who card center">
+                    <i class="fa-solid fa-camera-retro"></i>
+                    <h4>Photography</h4>
+                    <p class="muted small">Portraits & landscapes, film-style editing.</p>
+                </div>
+                <div class="who card center">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h4>Cooking</h4>
+                    <p class="muted small">Home-style recipes & experimenting with spices.</p>
+                </div>
+                <div class="who card center">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h4>Writing</h4>
+                    <p class="muted small">Short essays and letters — I enjoy simple stories.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio (large images with captions) -->
+        <section id="portfolio" aria-labelledby="portfolio-h">
+            <h2 id="portfolio-h">Portfolio (Moments & Projects)</h2>
+            <div class="portfolio">
+                <figure class="item card">
+                    <img src="https://picsum.photos/seed/p1/900/600" alt="Project image 1">
+                    <figcaption class="caption">Sunset in Rishikesh — personal series (2024)</figcaption>
+                </figure>
+                <figure class="item card">
+                    <img src="https://picsum.photos/seed/p2/900/600" alt="Project image 2">
+                    <figcaption class="caption">Handmade Sourdough — recipe & notes</figcaption>
+                </figure>
+                <figure class="item card">
+                    <img src="https://picsum.photos/seed/p3/900/600" alt="Project image 3">
+                    <figcaption class="caption">Neighborhood portraits — candid moments</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- Favorites -->
+        <section id="favorites" aria-labelledby="favorites-h">
+            <h2 id="favorites-h">Favorites</h2>
+            <div class="card favorites">
+                <p>📚 <strong>Book:</strong> <span class="muted">"The Alchemist" — Paulo Coelho</span></p>
+                <p>🎬 <strong>Movie:</strong> <span class="muted">Amélie</span></p>
+                <p>🌍 <strong>Place:</strong> <span class="muted">A quiet hill station</span></p>
+                <p>🍲 <strong>Food:</strong> <span class="muted">Masala dosa</span></p>
+            </div>
+        </section>
+
+        <!-- Quote -->
+        <section id="quote" aria-labelledby="quote-h">
+            <h2 id="quote-h">A Quote I Live By</h2>
+            <blockquote class="card">"Do small things with great love." — inspired by Mother Teresa</blockquote>
+        </section>
+
+        <!-- Messages from Friends -->
+        <section id="messages" aria-labelledby="messages-h">
+            <h2 id="messages-h">Messages from Friends</h2>
+            <div class="messages">
+                <div class="msg card"><strong>Riya:</strong> "Aarav always brings warmth and laughter to our meetups."
+                </div>
+                <div class="msg card"><strong>Sahil:</strong> "Reliable, supportive and creative — a joy to collaborate
+                    with."</div>
+                <div class="msg card"><strong>Ananya:</strong> "His photos tell stories. Always inspired."</div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section id="timeline" aria-labelledby="timeline-h">
+            <h2 id="timeline-h">Timeline</h2>
+            <div class="card timeline">
+                <div class="event"><strong>1996</strong> — Born in Lucknow, India</div>
+                <div class="event"><strong>2016</strong> — Graduated with BA in English Literature</div>
+                <div class="event"><strong>2019</strong> — Moved to Pune, began photography projects</div>
+                <div class="event"><strong>2023</strong> — Launched small bakery pop-up</div>
+            </div>
+        </section>
+
+        <!-- Skills (stars) & Fun counters -->
+        <section id="skills" aria-labelledby="skills-h">
+            <h2 id="skills-h">Abilities & Fun Facts</h2>
+            <div class="card">
+                <div style="display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+                    <div>
+                        <h4>Photography</h4>
+                        <div class="stars">★★★★★</div>
+                        <h4>Cooking</h4>
+                        <div class="stars">★★★★☆</div>
+                        <h4>Writing</h4>
+                        <div class="stars">★★★★☆</div>
+                    </div>
+
+                    <div>
+                        <div class="counters">
+                            <div class="counter">
+                                <div id="c1" style="font-weight:700;font-size:1.4rem">0</div>
+                                <div class="small muted">Photoshoots</div>
+                            </div>
+                            <div class="counter">
+                                <div id="c2" style="font-weight:700;font-size:1.4rem">0</div>
+                                <div class="small muted">Recipes Tried</div>
+                            </div>
+                            <div class="counter">
+                                <div id="c3" style="font-weight:700;font-size:1.4rem">0</div>
+                                <div class="small muted">Letters Written</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" aria-labelledby="gallery-h">
+            <h2 id="gallery-h">Gallery</h2>
+            <div class="gallery">
+                <img src="https://picsum.photos/seed/g1/400/300" alt="g1">
+                <img src="https://picsum.photos/seed/g2/400/300" alt="g2">
+                <img src="https://picsum.photos/seed/g3/400/300" alt="g3">
+                <img src="https://picsum.photos/seed/g4/400/300" alt="g4">
+            </div>
+        </section>
+
+        <!-- Blog previews -->
+        <section id="blog" aria-labelledby="blog-h">
+            <h2 id="blog-h">Recent Writings</h2>
+            <div class="blog-grid">
+                <article class="post">
+                    <h4>How I Learned to Slow Down</h4>
+                    <p class="muted small">A short reflection on making time for what matters.</p>
+                </article>
+                <article class="post">
+                    <h4>My Favorite Weekend Recipes</h4>
+                    <p class="muted small">Simple, cozy meals that bring joy.</p>
+                </article>
+                <article class="post">
+                    <h4>Photographing Strangers (With Permission!)</h4>
+                    <p class="muted small">Tips on candid portrait etiquette.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Day in my life -->
+        <section id="routine" aria-labelledby="routine-h">
+            <h2 id="routine-h">A Day in My Life</h2>
+            <div class="routine">
+                <div class="item card small"><strong>06:30</strong>
+                    <div class="muted">Morning walk</div>
+                </div>
+                <div class="item card small"><strong>08:00</strong>
+                    <div class="muted">Breakfast & read</div>
+                </div>
+                <div class="item card small"><strong>11:00</strong>
+                    <div class="muted">Photography / Projects</div>
+                </div>
+                <div class="item card small"><strong>18:00</strong>
+                    <div class="muted">Cook & unwind</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" aria-labelledby="faq-h">
+            <h2 id="faq-h">FAQ</h2>
+            <div class="faq">
+                <div class="q card">What inspires you?</div>
+                <div class="a muted" style="display:none">Little moments — conversations, sunlight, and quiet cafes.
+                </div>
+
+                <div class="q card">Are you available for commissions?</div>
+                <div class="a muted" style="display:none">Occasionally. Email me with details and I’ll reply.</div>
+
+                <div class="q card">Can you teach photography?</div>
+                <div class="a muted" style="display:none">Yes — I offer short workshops.</div>
+            </div>
+        </section>
+
+        <!-- Newsletter & CV -->
+        <section id="newsletter" aria-labelledby="newsletter-h">
+            <h2 id="newsletter-h">Stay in Touch</h2>
+            <div class="card center">
+                <p class="muted small">Subscribe to occasional notes — photos, recipes, and thoughts.</p>
+                <div class="newsletter">
+                    <input id="newsletterEmail" type="email" placeholder="Your email" aria-label="newsletter email">
+                    <button id="subBtn" class="cta">Subscribe</button>
+                </div>
+                <p class="small muted" style="margin-top:8px">Or <a href="#" id="downloadCv2">download my CV</a></p>
+            </div>
+        </section>
+
+        <!-- Contact (just email + socials) -->
+        <section id="contact" aria-labelledby="contact-h">
+            <h2 id="contact-h">Contact</h2>
+            <div class="card center">
+                <p>Email: <a href="mailto:aarav.sharma@example.com">aarav.sharma@example.com</a></p>
+                <p class="muted small">Socials:
+                    <a href="#" aria-label="Instagram" style="margin-left:8px"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter" style="margin-left:8px"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Pinterest" style="margin-left:8px"><i
+                            class="fa-brands fa-pinterest"></i></a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Personal note -->
+        <section id="note">
+            <div class="card center">
+                <p>Thanks for visiting my little corner of the web 🌸</p>
+                <p class="muted small">If you enjoyed this, drop me a note — I'd love to hear from you.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sticky minimal footer -->
+    <footer class="site-footer">
+        <div class="small muted">© Aarav Sharma 2025 — Made with ❤️</div>
+    </footer>
+
+    <!-- Inline JS: theme, rotator, reveal, counters, FAQ, newsletter -->
+    <script>
+        // Theme toggle (persist)
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            themeToggle.innerHTML = document.body.classList.contains('dark') ? '<i class=\"fa-solid fa-sun\"></i>' : '<i class=\"fa-solid fa-moon\"></i>';
+        });
+
+        // Hero quote rotator
+        const quotes = [
+            "Life is a story — make yours worth reading.",
+            "Taste the little things; they add up to a life.",
+            "Capture light, bake bread, write a note — repeat."
+        ];
+        let qI = 0, qEl = document.getElementById('heroQuote');
+        setInterval(() => { qI = (qI + 1) % quotes.length; qEl.style.opacity = 0; setTimeout(() => { qEl.textContent = quotes[qI]; qEl.style.opacity = 1; }, 300); }, 4200);
+
+        // Scroll reveal simple
+        const revealEls = document.querySelectorAll('section');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'none'; io.unobserve(e.target); }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(s => {
+            s.style.opacity = 0; s.style.transform = 'translateY(18px)';
+            io.observe(s);
+        });
+
+        // Fun counters animation
+        function animateCounter(id, target, duration = 1200) {
+            const el = document.getElementById(id);
+            let start = 0, startTime = null;
+            function step(ts) {
+                if (!startTime) startTime = ts;
+                const progress = Math.min((ts - startTime) / duration, 1);
+                el.textContent = Math.floor(progress * target);
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        // animate when skills section visible
+        const skillsSection = document.getElementById('skills');
+        const obs2 = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                animateCounter('c1', 72); // photoshoots
+                animateCounter('c2', 128); // recipes
+                animateCounter('c3', 340); // letters
+                obs2.disconnect();
+            }
+        }, { threshold: 0.5 });
+        obs2.observe(skillsSection);
+
+        // FAQ accordion
+        document.querySelectorAll('.faq .q').forEach(q => {
+            q.addEventListener('click', () => {
+                const a = q.nextElementSibling;
+                const expanded = a.style.display === 'block';
+                document.querySelectorAll('.faq .a').forEach(x => x.style.display = 'none');
+                if (!expanded) a.style.display = 'block';
+            });
+        });
+
+        // Newsletter (frontend demo)
+        document.getElementById('subBtn').addEventListener('click', () => {
+            const em = document.getElementById('newsletterEmail').value.trim();
+            if (!em || !em.includes('@')) { alert('Please enter a valid email.'); return; }
+            alert('Thanks — ' + em + ' has been added to the demo list!');
+            document.getElementById('newsletterEmail').value = '';
+        });
+
+        // Language selector (demo only)
+        document.getElementById('lang').addEventListener('change', (e) => {
+            if (e.target.value === 'hi') alert('नमस्ते! (Demo: content not translated in this file)');
+        });
+
+        // Smooth small nav highlight (optional)
+        const navLinks = document.querySelectorAll('.nav-wrap a');
+        function highlightNav() {
+            let fromTop = window.scrollY + 120;
+            navLinks.forEach(link => {
+                const sec = document.querySelector(link.getAttribute('href'));
+                if (!sec) return;
+                if (sec.offsetTop <= fromTop && (sec.offsetTop + sec.offsetHeight) > fromTop) {
+                    link.style.color = 'var(--text)';
+                } else {
+                    link.style.color = 'var(--muted)';
+                }
+            });
+        }
+        window.addEventListener('scroll', highlightNav);
+        highlightNav();
+
+        // Download CV Demo hooks
+        document.getElementById('downloadCv').addEventListener('click', (e) => { e.preventDefault(); alert('Demo CV download'); });
+        document.getElementById('downloadCv2').addEventListener('click', (e) => { e.preventDefault(); alert('Demo CV download'); });
+
+        // small accessibility: focus outlines for keyboard users
+        document.body.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') document.body.classList.add('show-focus');
+        });
+    </script>
+</body>
+
+</html>
